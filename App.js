@@ -68,24 +68,19 @@ console.error(error);
 });
 
 
-fetch('http://35.246.54.179/barcode/', {
-  method: 'POST',
-  headers: {
-  Accept: 'application/json',
- 'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-   "barcode":"100000001"
-  }),
-
- }).then((response) => response.json())
- .then((responseJson) => {
- console.log(responseJson);
-
- 
+fetch('https://jsonplaceholder.typicode.com/posts')
+.then(response => response.json())
+.then(responseJson => {
+  let ds = new ListView.DataSource({
+    rowHasChanged: (r1, r2) => r1 !== r2,
+  });
+  this.setState({
+    isLoading: false,
+    dataSource: ds.cloneWithRows(responseJson),
+  });
 })
-.catch((error) => {
-console.error(error);
+.catch(error => {
+  console.error(error);
 });
   //this._storeData();
   this._retrieveData();
