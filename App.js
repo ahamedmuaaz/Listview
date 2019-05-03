@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,AsyncStorage,ActivityIndicator, ListView} from 'react-native';
+import {Platform, StyleSheet, Text, View,AsyncStorage,ActivityIndicator, ListView,TouchableOpacity,Image} from 'react-native';
 
  ActivityIndicator, ListView
 
@@ -109,8 +109,12 @@ return fetch('http://35.246.54.179/allItems/')
             dataSource={this.state.dataSource}
             renderSeparator={this.ListViewItemSeparator}
             renderRow={rowData => (
+            
               <View style={{ flex: 1, flexDirection: 'column', 
                             paddingTop:16, paddingBottom:16 }}>
+
+               <TouchableOpacity   onPress={this.print(rowData.brand,rowData.name)}></TouchableOpacity>
+               <Image style={styles.ImageComponentStyle} source = {{ uri:rowData.image}} />
                 <Text style={styles.textViewContainerHeading}>
                  Dress Brand: {rowData.brand}
                 </Text>
@@ -120,7 +124,12 @@ return fetch('http://35.246.54.179/allItems/')
                 <Text style={styles.textViewContainer}>
                  Dress Type: {rowData.name}
                 </Text>
+
+                
               </View>
+            
+            
+              
             )}
           />
         </View>
@@ -151,7 +160,14 @@ return fetch('http://35.246.54.179/allItems/')
       console.log(error);
     }
   };
+
+  print(email,pass){
+    console.log("hello");
+    //console.log(pass);
+  };
 }
+
+
 
 const styles = StyleSheet.create({
   MainContainer: {
@@ -159,6 +175,15 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 20 : 30,
     backgroundColor: '#ffffff',
     padding: 5,
+  },
+  ImageComponentStyle: {
+    
+    justifyContent: 'center',
+    flex:1,
+    alignItems: 'center',
+    height: 100,
+    backgroundColor: '#4CAF50'
+   
   },
   textViewContainerHeading: {
     paddingLeft: 10,
