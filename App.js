@@ -68,24 +68,25 @@ console.error(error);
 });
 
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-.then(response => response.json())
-.then(responseJson => {
-  let ds = new ListView.DataSource({
-    rowHasChanged: (r1, r2) => r1 !== r2,
-  });
-  this.setState({
-    isLoading: false,
-    dataSource: ds.cloneWithRows(responseJson),
-  });
-})
-.catch(error => {
-  console.error(error);
-});
+return fetch('http://35.246.54.179/allItems/')
+      .then(response => response.json())
+      .then(responseJson => {
+        let ds = new ListView.DataSource({
+          rowHasChanged: (r1, r2) => r1 !== r2,
+        });
+        this.setState({
+          isLoading: false,
+          dataSource: ds.cloneWithRows(responseJson),
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   //this._storeData();
-  this._retrieveData();
+ // this._retrieveData();
     //console.log("moubnted");
   }
+
   ListViewItemSeparator = () => {
     //Divider for the list item
     return (
@@ -111,10 +112,13 @@ fetch('https://jsonplaceholder.typicode.com/posts')
               <View style={{ flex: 1, flexDirection: 'column', 
                             paddingTop:16, paddingBottom:16 }}>
                 <Text style={styles.textViewContainerHeading}>
-                  {rowData.id + '. '+rowData.title}
+                 Dress Brand: {rowData.brand}
                 </Text>
                 <Text style={styles.textViewContainer}>
-                  {rowData.body}
+                 Percentage Discount: {rowData.discount}
+                </Text>
+                <Text style={styles.textViewContainer}>
+                 Dress Type: {rowData.name}
                 </Text>
               </View>
             )}
