@@ -29,10 +29,33 @@ class Welcome extends React.Component {
     }).then((response) => response.json())
     .then((responseJson) => {
     console.log(responseJson);
+
+    
  })
  .catch((error) => {
    console.error(error);
  });
+
+ fetch('http://35.246.54.179/test/', {
+  method: 'POST',
+  headers: {
+  Accept: 'application/json',
+ 'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+ 'shop_name': 'Kandy',
+ 'branch': 'Kadawatha'
+  }),
+
+ }).then((response) => response.json())
+ .then((responseJson) => {
+ console.log(responseJson);
+
+ 
+})
+.catch((error) => {
+console.error(error);
+});
   //this._storeData();
   this._retrieveData();
     //console.log("moubnted");
