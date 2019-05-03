@@ -31,6 +31,8 @@ class Welcome extends React.Component {
     console.log(responseJson);
 
     
+
+    
  })
  .catch((error) => {
    console.error(error);
@@ -45,6 +47,27 @@ class Welcome extends React.Component {
   body: JSON.stringify({
  'shop_name': 'Kandy',
  'branch': 'Kadawatha'
+  }),
+
+ }).then((response) => response.json())
+ .then((responseJson) => {
+ console.log(responseJson);
+
+ 
+})
+.catch((error) => {
+console.error(error);
+});
+
+
+fetch('http://35.246.54.179/barcode/', {
+  method: 'POST',
+  headers: {
+  Accept: 'application/json',
+ 'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+   "barcode":"100000001"
   }),
 
  }).then((response) => response.json())
